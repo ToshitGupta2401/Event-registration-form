@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Among Us Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page-shell">
+        <section class="event-card">
+            <div class="event-header">
+                <p class="eyebrow">Campus Game Night</p>
+                <h1>Emergency Meeting</h1>
+                <h2>Event Registration</h2>
+            </div>
+
+            <div class="info-grid" aria-label="Event details">
+                <div>
+                    <span>Mission</span>
+                    <strong>Complete tasks & find the impostor</strong>
+                </div>
+                <div>
+                    <span>Location</span>
+                    <strong>Ramanujan Block, Main Hall</strong>
+                </div>
+                <div>
+                    <span>Date</span>
+                    <strong>20 Dec 2026</strong>
+                </div>
+                <div>
+                    <span>Seats Left</span>
+                    <strong id="seatsLeft">24</strong>
+                </div>
+            </div>
+
+            <div class="countdown" aria-label="Countdown to event">
+                <div><strong id="days">00</strong><span>Days</span></div>
+                <div><strong id="hours">00</strong><span>Hours</span></div>
+                <div><strong id="minutes">00</strong><span>Minutes</span></div>
+                <div><strong id="seconds">00</strong><span>Seconds</span></div>
+            </div>
+
+            <form id="registrationForm" novalidate>
+                <h3>Crewmate Details</h3>
+
+                <div class="field-group">
+                    <label for="gamertag">Name / Gamertag</label>
+                    <input type="text" id="gamertag" placeholder="e.g. sus_player_99" maxlength="24" required>
+                    <small class="error-message" id="nameError"></small>
+                </div>
+
+                <div class="field-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                    <small class="error-message" id="emailError"></small>
+                </div>
+
+                <div class="field-group">
+                    <label for="college">College / Department</label>
+                    <input type="text" id="college" placeholder="e.g. CSE Department" required>
+                    <small class="error-message" id="collegeError"></small>
+                </div>
+
+                <div class="form-row">
+                    <div class="field-group">
+                        <label for="role">Preferred Role</label>
+                        <select id="role" required>
+                            <option value="Crewmate">Crewmate</option>
+                            <option value="Impostor">Impostor</option>
+                            <option value="Engineer">Engineer</option>
+                            <option value="Guardian Angel">Guardian Angel</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="teamSize">Team Size</label>
+                        <select id="teamSize" required>
+                            <option value="1">Solo</option>
+                            <option value="2">Duo</option>
+                            <option value="3">Trio</option>
+                            <option value="4">Squad</option>
+                        </select>
+                    </div>
+                </div>
+
+                <fieldset class="color-picker">
+                    <legend>Pick Your Color</legend>
+                    <label><input type="radio" name="color" value="Red" data-color="#f44336" checked><span style="--swatch:#f44336"></span>Red</label>
+                    <label><input type="radio" name="color" value="Blue" data-color="#2196f3"><span style="--swatch:#2196f3"></span>Blue</label>
+                    <label><input type="radio" name="color" value="Green" data-color="#22c55e"><span style="--swatch:#22c55e"></span>Green</label>
+                    <label><input type="radio" name="color" value="Pink" data-color="#ec4899"><span style="--swatch:#ec4899"></span>Pink</label>
+                    <label><input type="radio" name="color" value="Orange" data-color="#f97316"><span style="--swatch:#f97316"></span>Orange</label>
+                    <label><input type="radio" name="color" value="Yellow" data-color="#facc15"><span style="--swatch:#facc15"></span>Yellow</label>
+                </fieldset>
+
+                <div class="field-group">
+                    <label for="experience">Game Experience</label>
+                    <input type="range" id="experience" min="1" max="10" value="5">
+                    <div class="range-meta">
+                        <span>Beginner</span>
+                        <strong id="experienceValue">5/10</strong>
+                        <span>Expert</span>
+                    </div>
+                </div>
+
+                <label class="checkbox-line">
+                    <input type="checkbox" id="rules" required>
+                    <span>I agree to follow event rules and fair play.</span>
+                </label>
+                <small class="error-message" id="rulesError"></small>
+
+                <button type="submit">Join Game</button>
+            </form>
+        </section>
+
+        <aside class="side-panel">
+            <section class="preview-card">
+                <h3>Live Crew Pass</h3>
+                <div class="avatar" id="avatar">?</div>
+                <p id="previewName">Your gamertag</p>
+                <span id="previewRole">Crewmate</span>
+                <div class="preview-details">
+                    <div><span>Color</span><strong id="previewColor">Red</strong></div>
+                    <div><span>Team</span><strong id="previewTeam">Solo</strong></div>
+                    <div><span>Skill</span><strong id="previewSkill">5/10</strong></div>
+                </div>
+            </section>
+
+            <section class="registrations-card">
+                <div class="section-title">
+                    <h3>Recent Registrations</h3>
+                    <button type="button" id="clearList">Clear</button>
+                </div>
+                <ul id="registrationList"></ul>
+            </section>
+        </aside>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
